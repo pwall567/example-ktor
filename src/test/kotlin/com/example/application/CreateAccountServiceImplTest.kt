@@ -1,7 +1,5 @@
 package com.example.application
 
-import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
 import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -10,6 +8,8 @@ import kotlin.test.assertEquals
 import io.mockk.coEvery
 import io.mockk.mockk
 
+import com.example.application.model.AccountId
+import com.example.application.model.ExampleAccount
 import com.example.ports.secondary.ExampleClient
 
 class CreateAccountServiceImplTest {

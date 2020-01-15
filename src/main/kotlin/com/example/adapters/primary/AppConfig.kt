@@ -15,8 +15,6 @@ import net.pwall.json.ktor.jsonKtor
 import com.example.adapters.secondary.ClientFactory
 import com.example.adapters.secondary.ExampleClientImpl
 import com.example.application.CreateAccountServiceImpl
-import com.example.application.logging.LoggerDelegate
-import com.example.application.logging.info
 import com.example.ports.primary.Config
 import com.example.ports.primary.CreateAccountService
 import com.example.ports.primary.Properties
@@ -31,8 +29,6 @@ object AppConfig : Config {
     override val createAccountService: CreateAccountService = CreateAccountServiceImpl(exampleClient)
 
     private lateinit var ktorProperties: KtorProperties
-
-    private val log by LoggerDelegate()
 
     @Suppress("unused")
     fun Application.module() {
@@ -52,7 +48,7 @@ object AppConfig : Config {
             appRouting(AppConfig)
         }
 
-        log.info { properties["app.startMessage"] ?: "Starting..." }
+        println(properties["app.startMessage"] ?: "Starting...")
 
     }
 

@@ -1,10 +1,8 @@
 package com.example.adapters.secondary
 
-import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertEquals
+import kotlin.test.expect
 import kotlinx.coroutines.runBlocking
 
 import io.ktor.client.HttpClient
@@ -20,6 +18,8 @@ import io.ktor.http.headersOf
 import net.pwall.json.ktor.client.jsonKtorClient
 import net.pwall.json.stringifyJSON
 
+import com.example.application.model.AccountId
+import com.example.application.model.ExampleAccount
 import com.example.ports.secondary.ExampleClient
 
 class TermDepositsClientImplTest {
@@ -72,7 +72,9 @@ class TermDepositsClientImplTest {
         }
 
         // then
-        assertEquals(createAccountRequest.id, response)
+        expect(account.id) {
+            response
+        }
 
     }
 
