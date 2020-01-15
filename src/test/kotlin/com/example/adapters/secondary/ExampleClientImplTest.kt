@@ -22,23 +22,12 @@ import com.example.application.model.AccountId
 import com.example.application.model.ExampleAccount
 import com.example.ports.secondary.ExampleClient
 
-class TermDepositsClientImplTest {
+class ExampleClientImplTest {
 
     private lateinit var httpClient: HttpClient
     private lateinit var exampleClient: ExampleClient
 
     private val customHeader = "qwerty"
-//    private val bankingAccountDetail = BankingAccountDetail(
-//            accountId = RandomString.randomString(),
-//            accountNumber = RandomString.randomNumericString(),
-//            bsb = RandomString.randomNumericString(6),
-//            maskedNumber = ValidationUtil.maskNumber((RandomString.randomString())),
-//            displayName = RandomString.randomString(),
-//            openStatus = BankingAccountDetail.OpenStatus.OPEN,
-//            productCategory = BankingProductCategory.TERM_DEPOSITS,
-//            productName = RandomString.randomString(),
-//            features = emptyList()
-//    )
     private val account = ExampleAccount(AccountId(1), "Mr Dummy")
 
     private val standardHeaders = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString())

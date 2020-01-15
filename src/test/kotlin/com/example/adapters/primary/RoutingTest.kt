@@ -42,7 +42,7 @@ class RoutingTest {
             coEvery {
                 TestConfig.createAccountService.createAccount(customHeader, createAccountRequest)
             } returns AccountId(88)
-            val testCall = handleRequest(HttpMethod.Post, "/banking/accounts") {
+            val testCall = handleRequest(HttpMethod.Post, "/example/accounts") {
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
                 addHeader(Headers.CUSTOM_HEADER, customHeader)
                 setBody(createAccountRequest.stringifyJSON())

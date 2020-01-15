@@ -25,7 +25,7 @@ class CreateAccountServiceImplTest {
         createAccountService = CreateAccountServiceImpl(exampleClient)
     }
 
-    @Test fun `should return account details when term deposit account is successfully created`() {
+    @Test fun `should return account details when account is successfully created`() {
         // given
         val createAccountRequest = accountDetail
         val responseEntity = AccountId(777)

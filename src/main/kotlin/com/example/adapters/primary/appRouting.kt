@@ -14,7 +14,7 @@ import com.example.ports.primary.Config
 
 fun Routing.appRouting(config: Config) {
 
-    post("/banking/accounts") {
+    post("/example/accounts") {
         val customHeader = call.requireHeader(Headers.CUSTOM_HEADER)
         // invoke service with parameter from request body
         val request = call.receive<ExampleAccount>()
