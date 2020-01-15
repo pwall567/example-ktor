@@ -1,7 +1,5 @@
 package com.example.adapters.secondary
 
-import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
 import io.ktor.client.HttpClient
 import io.ktor.client.call.receive
 import io.ktor.client.request.headers
@@ -11,6 +9,8 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 
+import com.example.application.model.AccountId
+import com.example.application.model.ExampleAccount
 import com.example.ports.secondary.ExampleClient
 
 
