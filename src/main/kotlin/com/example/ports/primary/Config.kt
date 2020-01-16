@@ -1,9 +1,9 @@
 package com.example.ports.primary
 
-import com.example.ports.secondary.ExampleClient
+import com.example.ports.secondary.CustomerClient
 
 interface Config {
     val properties: Properties
-    val exampleClient: ExampleClient
+    val customerClient: CustomerClient
     val createAccountService: CreateAccountService
 }

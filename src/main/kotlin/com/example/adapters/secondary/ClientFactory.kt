@@ -8,12 +8,11 @@ import net.pwall.json.ktor.client.jsonKtorClient
 
 object ClientFactory {
 
-    val exampleHttpClient: HttpClient by lazy {
-        HttpClient(Apache) {
-            install(JsonFeature) {
-                jsonKtorClient {}
+    fun createHttpClient() =
+            HttpClient(Apache) {
+                install(JsonFeature) {
+                    jsonKtorClient {}
+                }
             }
-        }
-    }
 
 }

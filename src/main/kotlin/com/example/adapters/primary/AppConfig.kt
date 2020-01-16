@@ -13,20 +13,20 @@ import io.ktor.util.KtorExperimentalAPI
 import net.pwall.json.ktor.jsonKtor
 
 import com.example.adapters.secondary.ClientFactory
-import com.example.adapters.secondary.ExampleClientImpl
+import com.example.adapters.secondary.CustomerClientImpl
 import com.example.application.CreateAccountServiceImpl
 import com.example.ports.primary.Config
 import com.example.ports.primary.CreateAccountService
 import com.example.ports.primary.Properties
-import com.example.ports.secondary.ExampleClient
+import com.example.ports.secondary.CustomerClient
 
 @KtorExperimentalAPI
 object AppConfig : Config {
 
     override val properties: Properties
         get() = ktorProperties
-    override val exampleClient: ExampleClient = ExampleClientImpl(ClientFactory.exampleHttpClient)
-    override val createAccountService: CreateAccountService = CreateAccountServiceImpl(exampleClient)
+    override val customerClient: CustomerClient = CustomerClientImpl(ClientFactory.createHttpClient())
+    override val createAccountService: CreateAccountService = CreateAccountServiceImpl(customerClient)
 
     private lateinit var ktorProperties: KtorProperties
 

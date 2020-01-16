@@ -19,16 +19,16 @@ import net.pwall.json.ktor.client.jsonKtorClient
 import net.pwall.json.stringifyJSON
 
 import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
-import com.example.ports.secondary.ExampleClient
+import com.example.application.model.CustomerAccount
+import com.example.ports.secondary.CustomerClient
 
-class ExampleClientImplTest {
+class CustomerClientImplTest {
 
     private lateinit var httpClient: HttpClient
-    private lateinit var exampleClient: ExampleClient
+    private lateinit var customerClient: CustomerClient
 
     private val customHeader = "qwerty"
-    private val account = ExampleAccount(AccountId(1), "Mr Dummy")
+    private val account = CustomerAccount(AccountId(1), "Mr Dummy")
 
     private val standardHeaders = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString())
 
@@ -40,22 +40,22 @@ class ExampleClientImplTest {
             engine {
                 addHandler { request ->
                     when (request.url.fullPath) {
-                        "/example/accounts" ->
+                        "/customer/accounts" ->
                             respond(account.id.stringifyJSON(), HttpStatusCode.Created, standardHeaders)
                         else -> error("Unhandled ${request.url.fullPath}")
                     }
                 }
             }
         }
-        exampleClient = ExampleClientImpl(httpClient)
+        customerClient = CustomerClientImpl(httpClient)
     }
 
     @Test fun `should send createAccount POST rest request to example-adapter`() {
-        val createAccountRequest = ExampleAccount(AccountId(27), "xxxxx")
+        val createAccountRequest = CustomerAccount(AccountId(27), "xxxxx")
 
         // when
         val response = runBlocking {
-            exampleClient.createAccount(
+            customerClient.createAccount(
                     customHeader = customHeader,
                     request = createAccountRequest)
         }

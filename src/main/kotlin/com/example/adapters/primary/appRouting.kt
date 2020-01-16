@@ -9,15 +9,15 @@ import io.ktor.routing.Routing
 import io.ktor.routing.post
 
 import com.example.adapters.secondary.Headers
-import com.example.application.model.ExampleAccount
+import com.example.application.model.CustomerAccount
 import com.example.ports.primary.Config
 
 fun Routing.appRouting(config: Config) {
 
-    post("/example/accounts") {
+    post("/customer/accounts") {
         val customHeader = call.requireHeader(Headers.CUSTOM_HEADER)
         // invoke service with parameter from request body
-        val request = call.receive<ExampleAccount>()
+        val request = call.receive<CustomerAccount>()
         call.respond(config.createAccountService.createAccount(customHeader, request))
     }
 

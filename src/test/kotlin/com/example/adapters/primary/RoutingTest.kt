@@ -27,22 +27,22 @@ import net.pwall.json.stringifyJSON
 
 import com.example.adapters.secondary.Headers
 import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
+import com.example.application.model.CustomerAccount
 import com.example.ports.primary.Config
 import com.example.ports.primary.CreateAccountService
 import com.example.ports.primary.Properties
-import com.example.ports.secondary.ExampleClient
+import com.example.ports.secondary.CustomerClient
 
 class RoutingTest {
 
     @Test fun `should route to CreateAccountService`() {
         withTestApplication(Application::testApp) {
             val customHeader = "custom header"
-            val createAccountRequest = ExampleAccount(AccountId(88), "dummy")
+            val createAccountRequest = CustomerAccount(AccountId(88), "dummy")
             coEvery {
                 TestConfig.createAccountService.createAccount(customHeader, createAccountRequest)
             } returns AccountId(88)
-            val testCall = handleRequest(HttpMethod.Post, "/example/accounts") {
+            val testCall = handleRequest(HttpMethod.Post, "/customer/accounts") {
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
                 addHeader(Headers.CUSTOM_HEADER, customHeader)
                 setBody(createAccountRequest.stringifyJSON())
@@ -55,7 +55,7 @@ class RoutingTest {
 
 object TestConfig : Config {
     override val properties: Properties = Properties.EmptyProperties
-    override val exampleClient: ExampleClient = mockk()
+    override val customerClient: CustomerClient = mockk()
     override val createAccountService: CreateAccountService = mockk()
 }
 

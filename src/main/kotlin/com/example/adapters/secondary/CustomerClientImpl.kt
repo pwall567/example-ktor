@@ -10,14 +10,14 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 
 import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
-import com.example.ports.secondary.ExampleClient
+import com.example.application.model.CustomerAccount
+import com.example.ports.secondary.CustomerClient
 
 
-class ExampleClientImpl(private val client: HttpClient) : ExampleClient {
+class CustomerClientImpl(private val client: HttpClient) : CustomerClient {
 
-    override suspend fun createAccount(customHeader: String, request: ExampleAccount): AccountId {
-        val response = client.post<HttpResponse>("$EXAMPLE_SERVER_BASE_URI/example/accounts") {
+    override suspend fun createAccount(customHeader: String, request: CustomerAccount): AccountId {
+        val response = client.post<HttpResponse>("$CUSTOMER_SERVER_BASE_URI/customer/accounts") {
             body = request
             contentType(ContentType.Application.Json)
             headers {
@@ -31,7 +31,7 @@ class ExampleClientImpl(private val client: HttpClient) : ExampleClient {
     }
 
     companion object {
-        const val EXAMPLE_SERVER_BASE_URI = "http://example"
+        const val CUSTOMER_SERVER_BASE_URI = "http://example"
     }
 
 }

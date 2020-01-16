@@ -9,20 +9,20 @@ import io.mockk.coEvery
 import io.mockk.mockk
 
 import com.example.application.model.AccountId
-import com.example.application.model.ExampleAccount
-import com.example.ports.secondary.ExampleClient
+import com.example.application.model.CustomerAccount
+import com.example.ports.secondary.CustomerClient
 
 class CreateAccountServiceImplTest {
 
     private lateinit var createAccountService: CreateAccountServiceImpl
-    private lateinit var exampleClient: ExampleClient
+    private lateinit var customerClient: CustomerClient
 
     private val customHeader = "dummy custom header"
-    private val accountDetail = ExampleAccount(AccountId(777), "Q")
+    private val accountDetail = CustomerAccount(AccountId(777), "Q")
 
     @BeforeTest fun setUp() {
-        exampleClient = mockk()
-        createAccountService = CreateAccountServiceImpl(exampleClient)
+        customerClient = mockk()
+        createAccountService = CreateAccountServiceImpl(customerClient)
     }
 
     @Test fun `should return account details when account is successfully created`() {
@@ -30,7 +30,7 @@ class CreateAccountServiceImplTest {
         val createAccountRequest = accountDetail
         val responseEntity = AccountId(777)
         coEvery {
-            exampleClient.createAccount(customHeader, createAccountRequest)
+            customerClient.createAccount(customHeader, createAccountRequest)
         } returns responseEntity
 
         // when
