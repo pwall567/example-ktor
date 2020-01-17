@@ -6,7 +6,7 @@ import io.ktor.util.KtorExperimentalAPI
 import com.example.ports.primary.Properties
 
 @KtorExperimentalAPI
-class KtorProperties(private val environment: ApplicationEnvironment) :
+internal class KtorProperties(private val environment: ApplicationEnvironment) :
         Properties {
 
     override fun get(string: String): String? {

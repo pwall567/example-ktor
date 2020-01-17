@@ -4,15 +4,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.ContentNegotiation
-import io.ktor.features.StatusPages
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
-import io.ktor.http.HttpStatusCode
-import io.ktor.response.respond
 import io.ktor.routing.routing
 import io.ktor.server.testing.handleRequest
 import io.ktor.server.testing.setBody
@@ -21,7 +15,6 @@ import io.ktor.server.testing.withTestApplication
 import io.mockk.coEvery
 import io.mockk.mockk
 
-import net.pwall.json.ktor.jsonKtor
 import net.pwall.json.parseJSON
 import net.pwall.json.stringifyJSON
 
@@ -61,14 +54,7 @@ object TestConfig : Config {
 
 fun Application.testApp() {
 
-    install(StatusPages) {
-        exception<IllegalArgumentException> { call.respond(HttpStatusCode.BadRequest) }
-        exception<Throwable> { call.respond(HttpStatusCode.InternalServerError) }
-    }
-
-    install(ContentNegotiation) {
-        jsonKtor {}
-    }
+    commonConfig()
 
     routing {
         appRouting(TestConfig)

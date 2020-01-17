@@ -1,17 +1,12 @@
-package com.example.adapters.primary
+package com.example
 
 import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.ContentNegotiation
-import io.ktor.features.StatusPages
-import io.ktor.http.HttpStatusCode
-import io.ktor.response.respond
 import io.ktor.routing.routing
 import io.ktor.util.KtorExperimentalAPI
 
-import net.pwall.json.ktor.jsonKtor
-
+import com.example.adapters.primary.KtorProperties
+import com.example.adapters.primary.appRouting
+import com.example.adapters.primary.commonConfig
 import com.example.adapters.secondary.ClientFactory
 import com.example.adapters.secondary.CustomerClientImpl
 import com.example.application.CreateAccountServiceImpl
@@ -35,14 +30,7 @@ object AppConfig : Config {
 
         ktorProperties = KtorProperties(environment)
 
-        install(StatusPages) {
-            exception<IllegalArgumentException> { call.respond(HttpStatusCode.BadRequest) }
-            exception<Throwable> { call.respond(HttpStatusCode.InternalServerError) }
-        }
-
-        install(ContentNegotiation) {
-            jsonKtor {}
-        }
+        commonConfig()
 
         routing {
             appRouting(AppConfig)

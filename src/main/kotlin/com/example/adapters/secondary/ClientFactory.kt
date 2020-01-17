@@ -6,7 +6,7 @@ import io.ktor.client.features.json.JsonFeature
 
 import net.pwall.json.ktor.client.jsonKtorClient
 
-object ClientFactory {
+internal object ClientFactory {
 
     fun createHttpClient() =
             HttpClient(Apache) {
