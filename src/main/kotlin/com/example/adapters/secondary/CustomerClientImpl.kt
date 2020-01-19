@@ -12,9 +12,18 @@ import io.ktor.http.contentType
 import com.example.application.model.AccountId
 import com.example.application.model.CustomerAccount
 import com.example.ports.secondary.CustomerClient
+import io.ktor.client.request.get
 
 
 class CustomerClientImpl(private val client: HttpClient) : CustomerClient {
+
+    override suspend fun listAccounts(): List<CustomerAccount> {
+        val response = client.get<HttpResponse>("$CUSTOMER_SERVER_BASE_URI/customer/accounts")
+        when (response.status) {
+            HttpStatusCode.OK -> return response.receive()
+            else -> throw Exception("Something went wrong on list accounts")
+        }
+    }
 
     override suspend fun createAccount(customHeader: String, request: CustomerAccount): AccountId {
         val response = client.post<HttpResponse>("$CUSTOMER_SERVER_BASE_URI/customer/accounts") {
@@ -26,7 +35,7 @@ class CustomerClientImpl(private val client: HttpClient) : CustomerClient {
         }
         when (response.status) {
             HttpStatusCode.Created -> return response.receive()
-            else -> throw Exception("Something wrong with server")
+            else -> throw Exception("Something went wrong on create account")
         }
     }
 

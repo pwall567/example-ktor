@@ -7,6 +7,10 @@ import com.example.ports.secondary.CustomerClient
 
 class CreateAccountServiceImpl(private val customerClient: CustomerClient) : CreateAccountService {
 
+    override suspend fun listAccounts(): List<CustomerAccount> {
+        return customerClient.listAccounts()
+    }
+
     override suspend fun createAccount(customHeader: String, request: CustomerAccount): AccountId {
         return customerClient.createAccount(customHeader, request)
     }

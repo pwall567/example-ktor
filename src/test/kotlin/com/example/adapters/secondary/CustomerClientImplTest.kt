@@ -21,6 +21,7 @@ import net.pwall.json.stringifyJSON
 import com.example.application.model.AccountId
 import com.example.application.model.CustomerAccount
 import com.example.ports.secondary.CustomerClient
+import io.ktor.http.HttpMethod
 
 class CustomerClientImplTest {
 
@@ -41,13 +42,31 @@ class CustomerClientImplTest {
                 addHandler { request ->
                     when (request.url.fullPath) {
                         "/customer/accounts" ->
-                            respond(account.id.stringifyJSON(), HttpStatusCode.Created, standardHeaders)
+                            when (request.method) {
+                                HttpMethod.Get ->
+                                    respond(listOf(account).stringifyJSON(), HttpStatusCode.OK, standardHeaders)
+                                HttpMethod.Post ->
+                                    respond(account.id.stringifyJSON(), HttpStatusCode.Created, standardHeaders)
+                                else -> error("Unhandled method ${request.method}")
+                            }
                         else -> error("Unhandled ${request.url.fullPath}")
                     }
                 }
             }
         }
         customerClient = CustomerClientImpl(httpClient)
+    }
+
+    @Test fun `should return list of accounts`() {
+        // when
+        val response = runBlocking {
+            customerClient.listAccounts()
+        }
+
+        // then
+        expect (listOf(account)) {
+            response
+        }
     }
 
     @Test fun `should send createAccount POST rest request to example-adapter`() {

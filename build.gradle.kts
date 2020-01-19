@@ -43,7 +43,7 @@ dependencies {
     implementation("io.ktor:ktor-client-json:$ktorVersion")
     implementation("net.pwall.json:json-kotlin:2.1")
     implementation("net.pwall.json:json-ktor:0.7")
-    implementation("net.pwall.json:json-ktor-client:0.1")
+    implementation("net.pwall.json:json-ktor-client:0.2")
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")

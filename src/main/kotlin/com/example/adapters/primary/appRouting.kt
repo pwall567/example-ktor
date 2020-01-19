@@ -6,6 +6,7 @@ import io.ktor.request.header
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Routing
+import io.ktor.routing.get
 import io.ktor.routing.post
 
 import com.example.adapters.secondary.Headers
@@ -13,6 +14,10 @@ import com.example.application.model.CustomerAccount
 import com.example.ports.primary.Config
 
 fun Routing.appRouting(config: Config) {
+
+    get("/customer/accounts") {
+        call.respond(config.createAccountService.listAccounts())
+    }
 
     post("/customer/accounts") {
         val customHeader = call.requireHeader(Headers.CUSTOM_HEADER)
