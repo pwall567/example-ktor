@@ -1,7 +1,7 @@
 package com.example.application
 
-import com.example.application.model.AccountId
-import com.example.application.model.CustomerAccount
+import com.example.ports.common.AccountId
+import com.example.ports.common.CustomerAccount
 import com.example.ports.primary.CreateAccountService
 import com.example.ports.secondary.CustomerClient
 

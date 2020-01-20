@@ -2,6 +2,7 @@ package com.example.adapters.secondary
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.receive
+import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.response.HttpResponse
@@ -9,10 +10,9 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 
-import com.example.application.model.AccountId
-import com.example.application.model.CustomerAccount
+import com.example.ports.common.AccountId
+import com.example.ports.common.CustomerAccount
 import com.example.ports.secondary.CustomerClient
-import io.ktor.client.request.get
 
 
 class CustomerClientImpl(private val client: HttpClient) : CustomerClient {

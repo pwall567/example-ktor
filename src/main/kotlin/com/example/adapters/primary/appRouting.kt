@@ -10,7 +10,7 @@ import io.ktor.routing.get
 import io.ktor.routing.post
 
 import com.example.adapters.secondary.Headers
-import com.example.application.model.CustomerAccount
+import com.example.ports.common.CustomerAccount
 import com.example.ports.primary.Config
 
 fun Routing.appRouting(config: Config) {

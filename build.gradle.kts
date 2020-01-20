@@ -52,6 +52,7 @@ dependencies {
     testImplementation("io.ktor:ktor-client-mock:$ktorVersion")
     testImplementation("io.ktor:ktor-client-mock-jvm:$ktorVersion")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
+    testImplementation("com.tngtech.archunit:archunit:0.13.0")
 }
 
 application {

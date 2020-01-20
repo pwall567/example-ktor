@@ -11,6 +11,7 @@ import io.ktor.client.engine.mock.respond
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.fullPath
 import io.ktor.http.headersOf
@@ -18,10 +19,9 @@ import io.ktor.http.headersOf
 import net.pwall.json.ktor.client.jsonKtorClient
 import net.pwall.json.stringifyJSON
 
-import com.example.application.model.AccountId
-import com.example.application.model.CustomerAccount
+import com.example.ports.common.AccountId
+import com.example.ports.common.CustomerAccount
 import com.example.ports.secondary.CustomerClient
-import io.ktor.http.HttpMethod
 
 class CustomerClientImplTest {
 

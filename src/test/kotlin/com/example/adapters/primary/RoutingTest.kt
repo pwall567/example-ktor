@@ -19,8 +19,8 @@ import net.pwall.json.parseJSON
 import net.pwall.json.stringifyJSON
 
 import com.example.adapters.secondary.Headers
-import com.example.application.model.AccountId
-import com.example.application.model.CustomerAccount
+import com.example.ports.common.AccountId
+import com.example.ports.common.CustomerAccount
 import com.example.ports.primary.Config
 import com.example.ports.primary.CreateAccountService
 import com.example.ports.primary.Properties

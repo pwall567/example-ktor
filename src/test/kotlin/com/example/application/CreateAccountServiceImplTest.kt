@@ -1,15 +1,15 @@
 package com.example.application
 
-import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlinx.coroutines.runBlocking
 
 import io.mockk.coEvery
 import io.mockk.mockk
 
-import com.example.application.model.AccountId
-import com.example.application.model.CustomerAccount
+import com.example.ports.common.AccountId
+import com.example.ports.common.CustomerAccount
 import com.example.ports.secondary.CustomerClient
 
 class CreateAccountServiceImplTest {
