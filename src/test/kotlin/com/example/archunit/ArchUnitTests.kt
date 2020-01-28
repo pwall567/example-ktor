@@ -18,8 +18,12 @@ class ArchUnitTests {
 
     @Test fun `should not allow external references in application`() {
         val rule: ArchRule = noClasses().that().resideInAPackage("..application..").should().dependOnClassesThat().
-                resideOutsideOfPackages("com.example..", "kotlin..", "java..", "org.jetbrains.annotations..")
+                resideOutsideOfPackages(thisPackage, "kotlin..", "java..", "org.jetbrains.annotations..")
         rule.check(importedClasses)
+    }
+
+    companion object {
+        const val thisPackage = "com.example.."
     }
 
 }
