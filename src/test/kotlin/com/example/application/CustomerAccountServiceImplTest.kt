@@ -12,9 +12,9 @@ import com.example.ports.common.AccountId
 import com.example.ports.common.CustomerAccount
 import com.example.ports.secondary.CustomerClient
 
-class CreateAccountServiceImplTest {
+class CustomerAccountServiceImplTest {
 
-    private lateinit var createAccountService: CreateAccountServiceImpl
+    private lateinit var createAccountService: CustomerAccountServiceImpl
     private lateinit var customerClient: CustomerClient
 
     private val customHeader = "dummy custom header"
@@ -22,7 +22,7 @@ class CreateAccountServiceImplTest {
 
     @BeforeTest fun setUp() {
         customerClient = mockk()
-        createAccountService = CreateAccountServiceImpl(customerClient)
+        createAccountService = CustomerAccountServiceImpl(customerClient)
     }
 
     @Test fun `should return account details when account is successfully created`() {

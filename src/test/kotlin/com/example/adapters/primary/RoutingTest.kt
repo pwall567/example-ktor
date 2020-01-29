@@ -22,18 +22,18 @@ import com.example.adapters.secondary.Headers
 import com.example.ports.common.AccountId
 import com.example.ports.common.CustomerAccount
 import com.example.ports.primary.Config
-import com.example.ports.primary.CreateAccountService
+import com.example.ports.primary.CustomerAccountService
 import com.example.ports.primary.Properties
 import com.example.ports.secondary.CustomerClient
 
 class RoutingTest {
 
-    @Test fun `should route to CreateAccountService`() {
+    @Test fun `should route to CustomerAccountService`() {
         withTestApplication(Application::testApp) {
             val customHeader = "custom header"
             val createAccountRequest = CustomerAccount(AccountId(88), "dummy")
             coEvery {
-                TestConfig.createAccountService.createAccount(customHeader, createAccountRequest)
+                TestConfig.customerAccountService.createAccount(customHeader, createAccountRequest)
             } returns AccountId(88)
             val testCall = handleRequest(HttpMethod.Post, "/customer/accounts") {
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
@@ -49,7 +49,7 @@ class RoutingTest {
 object TestConfig : Config {
     override val properties: Properties = Properties.EmptyProperties
     override val customerClient: CustomerClient = mockk()
-    override val createAccountService: CreateAccountService = mockk()
+    override val customerAccountService: CustomerAccountService = mockk()
 }
 
 fun Application.testApp() {

@@ -5,5 +5,5 @@ import com.example.ports.secondary.CustomerClient
 interface Config {
     val properties: Properties
     val customerClient: CustomerClient
-    val createAccountService: CreateAccountService
+    val customerAccountService: CustomerAccountService
 }

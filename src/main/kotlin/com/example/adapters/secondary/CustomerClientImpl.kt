@@ -13,6 +13,7 @@ import io.ktor.http.contentType
 import com.example.ports.common.AccountId
 import com.example.ports.common.CustomerAccount
 import com.example.ports.secondary.CustomerClient
+import com.example.ports.secondary.CustomerClientException
 
 
 class CustomerClientImpl(private val client: HttpClient) : CustomerClient {
@@ -21,7 +22,7 @@ class CustomerClientImpl(private val client: HttpClient) : CustomerClient {
         val response = client.get<HttpResponse>("$CUSTOMER_SERVER_BASE_URI/customer/accounts")
         when (response.status) {
             HttpStatusCode.OK -> return response.receive()
-            else -> throw Exception("Something went wrong on list accounts")
+            else -> throw CustomerClientException("Something went wrong on list accounts")
         }
     }
 
@@ -35,7 +36,7 @@ class CustomerClientImpl(private val client: HttpClient) : CustomerClient {
         }
         when (response.status) {
             HttpStatusCode.Created -> return response.receive()
-            else -> throw Exception("Something went wrong on create account")
+            else -> throw CustomerClientException("Something went wrong on create account")
         }
     }
 

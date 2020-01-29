@@ -2,10 +2,10 @@ package com.example.application
 
 import com.example.ports.common.AccountId
 import com.example.ports.common.CustomerAccount
-import com.example.ports.primary.CreateAccountService
+import com.example.ports.primary.CustomerAccountService
 import com.example.ports.secondary.CustomerClient
 
-class CreateAccountServiceImpl(private val customerClient: CustomerClient) : CreateAccountService {
+class CustomerAccountServiceImpl(private val customerClient: CustomerClient) : CustomerAccountService {
 
     override suspend fun listAccounts(): List<CustomerAccount> {
         return customerClient.listAccounts()
